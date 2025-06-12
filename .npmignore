@@ -1,0 +1,47 @@
+# Development files
+example/
+.github/
+.vscode/
+.idea/
+
+# Build files
+android/build/
+android/.gradle/
+ios/build/
+
+# Tests
+__tests__/
+**/__tests__/
+**/__mocks__/
+*.test.*
+*.spec.*
+
+# Documentation
+docs/
+
+# Configuration files
+.babelrc
+.eslintrc*
+.prettierrc*
+babel.config.js
+metro.config.js
+tsconfig.json
+tsconfig.build.json
+
+# Git
+.git/
+.gitignore
+
+# Yarn
+yarn.lock
+.yarnrc
+
+# NPM
+.npmrc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
