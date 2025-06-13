@@ -1,10 +1,20 @@
+const path = require('path');
+const pkg = require('../package.json');
+
 module.exports = {
+  project: {
+    ios: {
+      automaticPodsInstallation: true,
+    },
+  },
   dependencies: {
-    'react-native-user-activity-lib': {
+    [pkg.name]: {
+      root: path.join(__dirname, '..'),
       platforms: {
-        ios: {
-          podspecPath: 'react-native-user-activity-detection.podspec',
-        },
+        // Codegen script incorrectly fails without this
+        // So we explicitly specify the platforms with empty object
+        ios: {},
+        android: {},
       },
     },
   },

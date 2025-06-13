@@ -21,6 +21,7 @@ npm install react-native-user-activity-detection
 ### iOS Setup
 
 1. Run pod install:
+
 ```sh
 cd ios && pod install
 ```
@@ -60,23 +61,24 @@ import { View, Text, Alert } from 'react-native';
 import { useNativeActivityDetection } from 'react-native-user-activity-detection';
 
 const App = () => {
-  const { triggerActivity, isModuleAvailable, resetTimer } = useNativeActivityDetection({
-    inactivityTimeout: 300000, // 5 minutes
-    backgroundTimeout: 120, // 2 minutes
-    onInactivity: () => {
-      Alert.alert('Session Expired', 'Please login again');
-      // Lock the app or navigate to login screen
-    },
-    onActivity: () => {
-      console.log('User is active');
-    },
-    onBackground: () => {
-      console.log('App went to background');
-    },
-    onForeground: () => {
-      console.log('App came to foreground');
-    },
-  });
+  const { triggerActivity, isModuleAvailable, resetTimer } =
+    useNativeActivityDetection({
+      inactivityTimeout: 300000, // 5 minutes
+      backgroundTimeout: 120, // 2 minutes
+      onInactivity: () => {
+        Alert.alert('Session Expired', 'Please login again');
+        // Lock the app or navigate to login screen
+      },
+      onActivity: () => {
+        console.log('User is active');
+      },
+      onBackground: () => {
+        console.log('App went to background');
+      },
+      onForeground: () => {
+        console.log('App came to foreground');
+      },
+    });
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -98,7 +100,7 @@ import { useNativeActivityDetection } from 'react-native-user-activity-detection
 import { lockApp, unlockApp } from './store/authSlice';
 
 const AppWithRedux = () => {
-  const { isAuthenticated, isUnlocked } = useSelector(state => state.auth);
+  const { isAuthenticated, isUnlocked } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const { triggerActivity } = useNativeActivityDetection({
@@ -123,23 +125,23 @@ const AppWithRedux = () => {
 
 #### Options
 
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `inactivityTimeout` | `number` | `480000` | Inactivity timeout in milliseconds |
-| `backgroundTimeout` | `number` | `240` | Background timeout in seconds |
-| `enabled` | `boolean` | `true` | Whether to enable activity detection |
-| `onInactivity` | `() => void` | `undefined` | Callback when user becomes inactive |
-| `onActivity` | `() => void` | `undefined` | Callback when user activity is detected |
-| `onBackground` | `() => void` | `undefined` | Callback when app goes to background |
-| `onForeground` | `() => void` | `undefined` | Callback when app comes to foreground |
+| Parameter           | Type         | Default     | Description                             |
+| ------------------- | ------------ | ----------- | --------------------------------------- |
+| `inactivityTimeout` | `number`     | `480000`    | Inactivity timeout in milliseconds      |
+| `backgroundTimeout` | `number`     | `240`       | Background timeout in seconds           |
+| `enabled`           | `boolean`    | `true`      | Whether to enable activity detection    |
+| `onInactivity`      | `() => void` | `undefined` | Callback when user becomes inactive     |
+| `onActivity`        | `() => void` | `undefined` | Callback when user activity is detected |
+| `onBackground`      | `() => void` | `undefined` | Callback when app goes to background    |
+| `onForeground`      | `() => void` | `undefined` | Callback when app comes to foreground   |
 
 #### Returns
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `triggerActivity` | `() => void` | Manually trigger activity detection |
-| `resetTimer` | `() => void` | Reset the inactivity timer |
-| `isModuleAvailable` | `boolean` | Whether the native module is available |
+| Property            | Type         | Description                            |
+| ------------------- | ------------ | -------------------------------------- |
+| `triggerActivity`   | `() => void` | Manually trigger activity detection    |
+| `resetTimer`        | `() => void` | Reset the inactivity timer             |
+| `isModuleAvailable` | `boolean`    | Whether the native module is available |
 
 ## How It Works
 
