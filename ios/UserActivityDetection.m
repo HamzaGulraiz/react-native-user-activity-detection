@@ -1,13 +1,13 @@
-//  UserActivityModule.m
-#import "UserActivityModule.h"
+//  UserActivityDetection.m
+#import "UserActivityDetection.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-@implementation UserActivityModule {
+@implementation UserActivityDetection {
   BOOL hasListeners;
 }
 
-static UserActivityModule *_sharedInstance = nil;
+static UserActivityDetection *_sharedInstance = nil;
 
 + (instancetype)sharedInstance {
   return _sharedInstance;

@@ -17,7 +17,7 @@ import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import java.util.concurrent.atomic.AtomicBoolean
 
-class UserActivityModule(private val reactContext: ReactApplicationContext) :
+class UserActivityDetectionModule(private val reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
 
     private val initialized = AtomicBoolean(false)
@@ -29,7 +29,7 @@ class UserActivityModule(private val reactContext: ReactApplicationContext) :
     }
 
     override fun getName(): String {
-        return "UserActivityModule"
+        return "UserActivityDetection"
     }
 
     @ReactMethod

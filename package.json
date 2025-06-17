@@ -1,6 +1,6 @@
 {
   "name": "react-native-user-activity-detection",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "A React Native library for detecting user activity and handling app inactivity with native module support for iOS and Android. Perfect for implementing auto-lock functionality, session management, and security features.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -15,7 +15,8 @@
         "types": "./lib/typescript/commonjs/src/index.d.ts",
         "default": "./lib/commonjs/index.js"
       }
-    }
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "src",
@@ -24,6 +25,7 @@
     "ios",
     "cpp",
     "*.podspec",
+    "README.md",
     "react-native.config.js",
     "!ios/build",
     "!android/build",
@@ -64,14 +66,13 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/config-conventional": "^19.6.0",
     "@evilmartians/lefthook": "^1.5.0",
-    "@react-native-community/cli": "19.0.0",
     "@react-native/eslint-config": "^0.73.1",
     "@release-it/conventional-changelog": "^9.0.2",
     "@types/jest": "^29.5.5",
-    "@types/react": "^18.2.44",
-    "commitlint": "^17.0.2",
+    "@types/react": "^19.1.0",
+    "commitlint": "^19.6.1",
     "del-cli": "^5.1.0",
     "eslint": "^8.51.0",
     "eslint-config-prettier": "^9.0.0",
@@ -80,13 +81,10 @@
     "prettier": "^3.0.3",
     "react": "19.1.0",
     "react-native": "0.80.0",
-    "react-native-builder-bob": "^0.32.0",
+    "react-native-builder-bob": "^0.38.3",
     "release-it": "^17.10.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
-  },
-  "resolutions": {
-    "@types/react": "^18.2.44"
   },
   "peerDependencies": {
     "react": "*",
@@ -95,7 +93,6 @@
   "workspaces": [
     "example"
   ],
-  "packageManager": "yarn@3.6.1",
   "jest": {
     "preset": "react-native",
     "modulePathIgnorePatterns": [
@@ -121,7 +118,9 @@
     },
     "plugins": {
       "@release-it/conventional-changelog": {
-        "preset": "angular"
+        "preset": {
+          "name": "angular"
+        }
       }
     }
   },
@@ -160,13 +159,6 @@
     "source": "src",
     "output": "lib",
     "targets": [
-      "codegen",
-      [
-        "commonjs",
-        {
-          "esm": true
-        }
-      ],
       [
         "module",
         {
@@ -174,38 +166,22 @@
         }
       ],
       [
+        "commonjs",
+        {
+          "esm": true
+        }
+      ],
+      [
         "typescript",
         {
-          "project": "tsconfig.build.json",
-          "esm": true
+          "project": "tsconfig.build.json"
         }
       ]
     ]
   },
-  "codegenConfig": {
-    "name": "RNUserActivityDetectionSpec",
-    "type": "modules",
-    "jsSrcsDir": "src",
-    "outputDir": {
-      "ios": "ios/generated",
-      "android": "android/generated"
-    },
-    "android": {
-      "javaPackageName": "com.useractivitydetection"
-    },
-    "includesGeneratedCode": true
-  },
-  "react-native": {
-    "ios": {
-      "sourceDir": "ios"
-    },
-    "android": {
-      "sourceDir": "android"
-    }
-  },
   "create-react-native-library": {
-    "type": "turbo-module",
+    "type": "legacy-module",
     "languages": "kotlin-objc",
-    "version": "0.46.0"
+    "version": "0.48.9"
   }
 }

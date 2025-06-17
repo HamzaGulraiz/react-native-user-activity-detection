@@ -26,32 +26,13 @@ npm install react-native-user-activity-detection
 cd ios && pod install
 ```
 
-2. Add the native files to your iOS project:
-   - Copy `UserActivityModule.h` and `UserActivityModule.m` to your iOS project
-   - Make sure they're added to your Xcode project
-
 ### Android Setup
 
-1. Add the package to your `MainApplication.java`:
+1. Run ./gradlew build:
 
-```java
-import com.yourapp.useractivity.UserActivityPackage;
-
-// In the getPackages() method:
-@Override
-protected List<ReactPackage> getPackages() {
-    return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new UserActivityPackage() // Add this line
-    );
-}
+```sh
+cd android && ./gradlew build
 ```
-
-2. Add the native files to your Android project:
-   - Copy `UserActivityModule.kt` and `UserActivityPackage.kt` to your Android project
-   - Update the package name in the files to match your app
-
-## Usage
 
 ### Basic Usage
 
@@ -61,24 +42,23 @@ import { View, Text, Alert } from 'react-native';
 import { useNativeActivityDetection } from 'react-native-user-activity-detection';
 
 const App = () => {
-  const { triggerActivity, isModuleAvailable, resetTimer } =
-    useNativeActivityDetection({
-      inactivityTimeout: 300000, // 5 minutes
-      backgroundTimeout: 120, // 2 minutes
-      onInactivity: () => {
-        Alert.alert('Session Expired', 'Please login again');
-        // Lock the app or navigate to login screen
-      },
-      onActivity: () => {
-        console.log('User is active');
-      },
-      onBackground: () => {
-        console.log('App went to background');
-      },
-      onForeground: () => {
-        console.log('App came to foreground');
-      },
-    });
+  const { triggerActivity, isModuleAvailable, resetTimer } = useNativeActivityDetection({
+    inactivityTimeout: 300000, // 5 minutes
+    backgroundTimeout: 120, // 2 minutes
+    onInactivity: () => {
+      Alert.alert('Session Expired', 'Please login again');
+      // Lock the app or navigate to login screen
+    },
+    onActivity: () => {
+      console.log('User is active');
+    },
+    onBackground: () => {
+      console.log('App went to background');
+    },
+    onForeground: () => {
+      console.log('App came to foreground');
+    },
+  });
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

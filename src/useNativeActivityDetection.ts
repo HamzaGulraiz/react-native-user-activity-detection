@@ -11,7 +11,7 @@ import type {
   ActivityDetectionResult,
 } from './types';
 
-const { UserActivityModule } = NativeModules;
+const { UserActivityDetection } = NativeModules;
 
 // Default constants
 const DEFAULT_INACTIVITY_TIMEOUT = 480 * 1000; // 8 minutes
@@ -67,10 +67,10 @@ export const useNativeActivityDetection = (
   const checkModuleAvailability = useCallback(async (): Promise<boolean> => {
     try {
       if (
-        UserActivityModule &&
-        typeof UserActivityModule.isAvailable === 'function'
+        UserActivityDetection &&
+        typeof UserActivityDetection.isAvailable === 'function'
       ) {
-        const isAvailable = await UserActivityModule.isAvailable();
+        const isAvailable = await UserActivityDetection.isAvailable();
         return isAvailable;
       }
       return false;
@@ -131,7 +131,7 @@ export const useNativeActivityDetection = (
 
     if (isAvailable && enabled) {
       // Set up event listener for native activity events
-      eventEmitterRef.current = new NativeEventEmitter(UserActivityModule);
+      eventEmitterRef.current = new NativeEventEmitter(UserActivityDetection);
       subscriptionRef.current = eventEmitterRef.current.addListener(
         'UserActivityDetected',
         handleNativeActivity
@@ -184,10 +184,10 @@ export const useNativeActivityDetection = (
   // Manual trigger function
   const triggerActivity = useCallback(() => {
     if (
-      UserActivityModule &&
-      typeof UserActivityModule.resetInactivityTimer === 'function'
+      UserActivityDetection &&
+      typeof UserActivityDetection.resetInactivityTimer === 'function'
     ) {
-      UserActivityModule.resetInactivityTimer();
+      UserActivityDetection.resetInactivityTimer();
     }
     handleUserActivity();
   }, [handleUserActivity]);
@@ -195,6 +195,6 @@ export const useNativeActivityDetection = (
   return {
     triggerActivity,
     resetTimer: resetInactivityTimer,
-    isModuleAvailable: !!UserActivityModule,
+    isModuleAvailable: !!UserActivityDetection,
   };
 };

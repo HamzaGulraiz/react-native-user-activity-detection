@@ -1,8 +1,8 @@
-// UserActivityModule.h
+// UserActivityDetection.h
 #import <React/RCTEventEmitter.h>
 #import <React/RCTBridgeModule.h>
 
-@interface UserActivityModule : RCTEventEmitter <RCTBridgeModule>
+@interface UserActivityDetection : RCTEventEmitter <RCTBridgeModule>
 
 + (instancetype)sharedInstance;
 - (void)emitUserActivity;

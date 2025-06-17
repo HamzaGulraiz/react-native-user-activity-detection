@@ -2,5 +2,5 @@ export { useNativeActivityDetection } from './useNativeActivityDetection';
 export type {
   ActivityDetectionOptions,
   ActivityDetectionResult,
-  UserActivityEvent
+  UserActivityEvent,
 } from './types';
