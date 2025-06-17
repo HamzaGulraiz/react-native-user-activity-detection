@@ -151,8 +151,8 @@ The library uses native modules to detect user interactions at the platform leve
 
 If `isModuleAvailable` returns `false`:
 
-1. **iOS**: Ensure you've run `pod install` and the native files are properly added
-2. **Android**: Check that the package is added to `MainApplication.java`
+1. **iOS**: Ensure you've run `pod install`
+2. **Android**: Ensure you've run `./gradlew build`
 3. **Metro**: Try clearing Metro cache: `npx react-native start --reset-cache`
 
 ### Activity Not Detected
