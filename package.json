@@ -1,6 +1,6 @@
 {
   "name": "react-native-user-activity-detection",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A React Native library for detecting user activity and handling app inactivity with native module support for iOS and Android. Perfect for implementing auto-lock functionality, session management, and security features.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
