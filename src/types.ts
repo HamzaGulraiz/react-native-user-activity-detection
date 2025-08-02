@@ -39,14 +39,14 @@ export interface ActivityDetectionOptions {
    * Callback function called when app comes to foreground
    */
   onForeground?: () => void;
+
+  /**
+   * To show activity in console (default: true)
+   */
+  debug?: boolean;
 }
 
 export interface ActivityDetectionResult {
-  /**
-   * Function to manually trigger activity detection
-   */
-  triggerActivity: () => void;
-
   /**
    * Whether the native module is available
    */

@@ -1,7 +1,5 @@
-//  UserActivityDetection.m
 #import "UserActivityDetection.h"
 #import <UIKit/UIKit.h>
-#import <objc/runtime.h>
 
 @implementation UserActivityDetection {
   BOOL hasListeners;
@@ -22,8 +20,26 @@ RCT_EXPORT_MODULE();
 - (instancetype)init {
   if (self = [super init]) {
     _sharedInstance = self;
+
+    // Add global touch detector
+    dispatch_async(dispatch_get_main_queue(), ^{
+      UIWindow *window = UIApplication.sharedApplication.keyWindow;
+      if (window) {
+        UIGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidInteract)];
+        gesture.cancelsTouchesInView = NO;
+        gesture.delaysTouchesBegan = NO;
+        gesture.delaysTouchesEnded = NO;
+        [window addGestureRecognizer:gesture];
+      } else {
+        NSLog(@"❗️UserActivityDetection: No keyWindow found. Gesture recognizer not attached.");
+      }
+    });
   }
   return self;
+}
+
+- (void)userDidInteract {
+  [self emitUserActivity];
 }
 
 - (NSArray<NSString *> *)supportedEvents {
